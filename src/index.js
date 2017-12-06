@@ -13,5 +13,45 @@
  * Removal or modification of this copyright notice is prohibited.
  *
  */
+const getTestFn = (rootTestFn, { only, skip } = {}) => {
+	if (only) return rootTestFn.only;
+	if (skip) return rootTestFn.skip;
+	return rootTestFn;
+};
 
-export default 'Hello world';
+const createPreStep = (prefix, modifiers) => (
+	description,
+	beforeEachHook,
+	suiteBody,
+) => {
+	const suiteFn = getTestFn(describe, modifiers);
+	suiteFn(`${prefix} ${description}`, () => {
+		beforeEach(beforeEachHook);
+		suiteBody();
+	});
+};
+
+const createAssertionStep = modifiers => (description, testBody) => {
+	const testFn = getTestFn(it, modifiers);
+	testFn(`Then ${description}`, testBody);
+};
+
+export const Given = createPreStep('Given');
+export const When = createPreStep('When');
+export const Then = createAssertionStep();
+
+Given.only = createPreStep('Given', { only: true });
+When.only = createPreStep('When', { only: true });
+Then.only = createAssertionStep({ only: true });
+
+Given.skip = createPreStep('Given', { skip: true });
+When.skip = createPreStep('When', { skip: true });
+Then.skip = createAssertionStep({ skip: true });
+
+const setGlobals = () => {
+	global.Given = Given;
+	global.When = When;
+	global.Then = Then;
+};
+
+export default setGlobals;
