@@ -1,13 +1,12 @@
 {
-	"env": {
-		"mocha": true
-	},
 	"globals": {
-		"expect": true,
-		"sandbox": true,
-		"sinon": true
+		"Given": true,
+		"When": true,
+		"Then": true,
+		"expect": true
 	},
 	"rules": {
-		"arrow-body-style": "off"
+		"arrow-body-style": "off",
+		"new-cap": ["error", { "capIsNewExceptions": ["Given", "When", "Then"] }]
 	}
 }
