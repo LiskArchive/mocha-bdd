@@ -1,4 +1,4 @@
---require ./test/setup.js
+--require chai/register-expect
 --reporter spec
 --recursive
 --ui bdd
