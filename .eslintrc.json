@@ -1,5 +1,8 @@
 {
 	"extends": [
 		"lisk-base"
-	]
+	],
+	"env": {
+		"mocha": true
+	}
 }
