@@ -13,3 +13,13 @@
  * Removal or modification of this copyright notice is prohibited.
  *
  */
+import { Given, When, Then } from '../src';
+import { given, when, then } from './steps';
+
+describe('local', () => {
+	Given('some condition', given, () => {
+		When('some code is executed', when, () => {
+			Then('some assertion', then);
+		});
+	});
+});

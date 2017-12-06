@@ -13,4 +13,15 @@
  * Removal or modification of this copyright notice is prohibited.
  *
  */
-export { aThenStep } from './my_module/then';
+import mochaBDD from '../src';
+import { given, when, then } from './steps';
+
+mochaBDD();
+
+describe('global', () => {
+	Given('some condition', given, () => {
+		When('some code is executed', when, () => {
+			Then('some assertion', then);
+		});
+	});
+});
