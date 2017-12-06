@@ -1,4 +1,4 @@
-Have you read lisk-template's Code of Conduct? By filing an Issue, you are expected to comply with it, including treating everyone with respect: https://github.com/LiskHQ/lisk-template/blob/master/CODE_OF_CONDUCT.md
+Have you read mocha-bdd's Code of Conduct? By filing an Issue, you are expected to comply with it, including treating everyone with respect: https://github.com/LiskHQ/mocha-bdd/blob/master/CODE_OF_CONDUCT.md
 
 ### Description
 

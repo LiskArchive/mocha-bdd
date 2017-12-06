@@ -1,5 +1,5 @@
 /*
- * LiskHQ/lisk-template
+ * LiskHQ/mocha-bdd
  * Copyright © 2017 Lisk Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution

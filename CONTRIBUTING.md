@@ -1,8 +1,8 @@
-# Contributing to lisk-template
+# Contributing to mocha-bdd
 
 First off, thanks for taking the time to contribute! :raised_hands:
 
-The following is a set of guidelines for contributing to lisk-template, which are hosted in the [LiskHQ Organization](https://github.com/LiskHQ) on GitHub. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+The following is a set of guidelines for contributing to mocha-bdd, which are hosted in the [LiskHQ Organization](https://github.com/LiskHQ) on GitHub. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table Of Contents
 
@@ -21,7 +21,7 @@ The following is a set of guidelines for contributing to lisk-template, which ar
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [lisk-template Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [info@lisk.io](mailto:info@lisk.io).
+This project and everyone participating in it is governed by the [mocha-bdd Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [info@lisk.io](mailto:info@lisk.io).
 
 ## Project License
 
@@ -65,7 +65,7 @@ First time contributors will need to wait for a trusted team member to start Jen
 
 ### Reporting Bugs
 
-This section guides you through submitting a bug report for lisk-template. Following these guidelines helps maintainers and the community understand your report :pencil:, reproduce the behavior :computer: :computer:, and find related reports :mag_right:.
+This section guides you through submitting a bug report for mocha-bdd. Following these guidelines helps maintainers and the community understand your report :pencil:, reproduce the behavior :computer: :computer:, and find related reports :mag_right:.
 
 Before creating bug reports, please check [this list](#before-submitting-a-bug-report) as you might find out that you don't need to create one. When you are creating a bug report, please [include as many details as possible](#how-do-i-submit-a-good-bug-report). Fill out [the required template](ISSUE_TEMPLATE.md), the information it asks for helps us resolve issues faster.
 
@@ -93,13 +93,13 @@ Explain the problem and include additional details to help maintainers reproduce
 
 Provide more context by answering these questions:
 
-* **Did the problem start happening recently** (e.g. after updating to a new version of lisk-template, Lisk or any other repository) or was this always a problem?
-* If the problem started happening recently, **can you reproduce the problem in an older version of lisk-template?** What's the most recent version in which the problem doesn't happen? You can download older versions of lisk-template from [the releases page](https://github.com/LiskHQ/lisk-template/releases).
+* **Did the problem start happening recently** (e.g. after updating to a new version of mocha-bdd, Lisk or any other repository) or was this always a problem?
+* If the problem started happening recently, **can you reproduce the problem in an older version of mocha-bdd?** What's the most recent version in which the problem doesn't happen? You can download older versions of mocha-bdd from [the releases page](https://github.com/LiskHQ/mocha-bdd/releases).
 * **Can you reliably reproduce the issue?** If not, provide details about how often the problem happens and under which conditions it normally happens.
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for lisk-template, including completely new features and minor improvements to existing functionality. Following these guidelines helps maintainers and the community understand your suggestion :pencil: and find related suggestions :mag_right:.
+This section guides you through submitting an enhancement suggestion for mocha-bdd, including completely new features and minor improvements to existing functionality. Following these guidelines helps maintainers and the community understand your suggestion :pencil: and find related suggestions :mag_right:.
 
  When you are creating an enhancement suggestion, please include as many details as possible. Fill in [the template](ISSUE_TEMPLATE.md), including the steps that you imagine you would take if the feature you're requesting existed.
 
@@ -111,9 +111,9 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 * **Provide a step-by-step description of the suggested enhancement** in as many details as possible.
 * **Provide specific examples to demonstrate the steps**. Include copy/pasteable snippets which you use in those examples, as [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
 * **Describe the current behavior** and **explain which behavior you expected to see instead** and why.
-* **Include screenshots and animated GIFs** which help you demonstrate the steps or point out the part of lisk-template which the suggestion is related to. You can use [this tool](http://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux.
-* **Explain why this enhancement would be useful** to most Lisk and lisk-template users.
-* **Specify which version of Lisk and lisk-template you're using.**
+* **Include screenshots and animated GIFs** which help you demonstrate the steps or point out the part of mocha-bdd which the suggestion is related to. You can use [this tool](http://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux.
+* **Explain why this enhancement would be useful** to most Lisk and mocha-bdd users.
+* **Specify which version of Lisk and mocha-bdd you're using.**
 * **Specify the name and version of the OS you're using.**
 
 ## Styleguides
@@ -143,7 +143,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
 ### JavaScript Styleguide
 
-On lisk-template we are using [ESLint](https://eslint.org/).
+On mocha-bdd we are using [ESLint](https://eslint.org/).
 Our JavaScript style expands [Airbnb's](https://github.com/airbnb/javascript) style. You can get more details here: https://github.com/LiskHQ/eslint-config-lisk-base
 
 These contribution guidelines were inspired by and are based on Atom's contribution guidelines. They were modified for the purposes of this repository. https://github.com/atom/atom/blob/master/CONTRIBUTING.md - Copyright (c) 2011-2017 GitHub Inc. (MIT)

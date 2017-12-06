@@ -1,5 +1,5 @@
 pipeline {
-	agent { node { label 'lisk-template' } }
+	agent { node { label 'mocha-bdd' } }
 	stages {
 		stage('Install dependencies') {
 			steps {
@@ -15,7 +15,7 @@ pipeline {
 			steps {
 				sh 'npm run test'
 				sh '''
-				cp ~/.coveralls.yml-lisk-template .coveralls.yml
+				cp ~/.coveralls.yml-mocha-bdd .coveralls.yml
 				npm run cover
 				'''
 			}
@@ -23,13 +23,13 @@ pipeline {
 	}
 	post {
 		success {
-			githubNotify context: 'continuous-integration/jenkins/lisk-template', description: 'The build passed.', status: 'SUCCESS'
+			githubNotify context: 'continuous-integration/jenkins/mocha-bdd', description: 'The build passed.', status: 'SUCCESS'
 		}
 		failure {
-			githubNotify context: 'continuous-integration/jenkins/lisk-template', description: 'The build failed.', status: 'FAILURE'
+			githubNotify context: 'continuous-integration/jenkins/mocha-bdd', description: 'The build failed.', status: 'FAILURE'
 		}
 		aborted {
-			githubNotify context: 'continuous-integration/jenkins/lisk-template', description: 'The build was aborted.', status: 'ERROR'
+			githubNotify context: 'continuous-integration/jenkins/mocha-bdd', description: 'The build was aborted.', status: 'ERROR'
 		}
 	}
 }

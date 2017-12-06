@@ -1,5 +1,5 @@
 {
-	"name": "lisk-template",
+	"name": "mocha-bdd",
 	"version": "0.1.0",
 	"description": "Template repository for Lisk projects",
 	"author": "Lisk Foundation <admin@lisk.io>, lightcurve GmbH <admin@lightcurve.io>",
@@ -8,13 +8,13 @@
 		"lisk",
 		"blockchain"
 	],
-	"homepage": "https://github.com/LiskHQ/lisk-template#readme",
+	"homepage": "https://github.com/LiskHQ/mocha-bdd#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/LiskHQ/lisk-template.git"
+		"url": "git+https://github.com/LiskHQ/mocha-bdd.git"
 	},
 	"bugs": {
-		"url": "https://github.com/LiskHQ/lisk-template/issues"
+		"url": "https://github.com/LiskHQ/mocha-bdd/issues"
 	},
 	"engines": {
 		"node": ">=6.11.1",

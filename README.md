@@ -1,9 +1,9 @@
-# lisk-template
+# mocha-bdd
 
-[![Build Status](https://jenkins.lisk.io/buildStatus/icon?job=lisk-template/master)](https://jenkins.lisk.io/job/lisk-template/job/master/)
+[![Build Status](https://jenkins.lisk.io/buildStatus/icon?job=mocha-bdd/master)](https://jenkins.lisk.io/job/mocha-bdd/job/master/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
-<a href="https://david-dm.org/LiskHQ/lisk-template"><img src="https://david-dm.org/LiskHQ/lisk-template.svg" alt="Dependency Status"></a>
-<a href="https://david-dm.org/LiskHQ/lisk-template/?type=dev"><img src="https://david-dm.org/LiskHQ/lisk-template/dev-status.svg" alt="devDependency Status"></a>
+<a href="https://david-dm.org/LiskHQ/mocha-bdd"><img src="https://david-dm.org/LiskHQ/mocha-bdd.svg" alt="Dependency Status"></a>
+<a href="https://david-dm.org/LiskHQ/mocha-bdd/?type=dev"><img src="https://david-dm.org/LiskHQ/mocha-bdd/dev-status.svg" alt="devDependency Status"></a>
 
 ## Goals of this repository
 
@@ -15,7 +15,7 @@
 When starting a new Lisk project, use this repository as a base. With a few small customisations, you will have a skeleton project up and running in a few minutes. The easiest way to bootstrap a new project is using the `bin/bootstrap.sh` script:
 
 ```sh
-curl --silent --user my_github_username https://raw.githubusercontent.com/LiskHQ/lisk-template/30-start_script/bin/bootstrap.sh | bash -l -s my-fresh-lisk-project
+curl --silent --user my_github_username https://raw.githubusercontent.com/LiskHQ/mocha-bdd/30-start_script/bin/bootstrap.sh | bash -l -s my-fresh-lisk-project
 ```
 
 Notes:
@@ -28,7 +28,7 @@ If you would rather complete this process on your own, you should follow these s
 
 1. Clone the repository
 1. Reinitialise git (by removing the `.git` directory, running `git init` and committing everything into the initial commit)
-1. Find and replace all instances of `lisk-template` with your project name (assuming the name of your project is the same as its GitHub namespace)
+1. Find and replace all instances of `mocha-bdd` with your project name (assuming the name of your project is the same as its GitHub namespace)
 1. Commit these customisation changes
 1. Run `npm install`
 
