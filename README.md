@@ -5,117 +5,117 @@
 <a href="https://david-dm.org/LiskHQ/mocha-bdd"><img src="https://david-dm.org/LiskHQ/mocha-bdd.svg" alt="Dependency Status"></a>
 <a href="https://david-dm.org/LiskHQ/mocha-bdd/?type=dev"><img src="https://david-dm.org/LiskHQ/mocha-bdd/dev-status.svg" alt="devDependency Status"></a>
 
-## Goals of this repository
+This package helps you write better BDD-style tests. It exports three functions which wrap functions from Mocha to provide a more BDD-friendly interface that encourages well-structured, atomic, reusable test code. The default export is a function which, if called, adds those three functions as globals.
 
-1. To gather standards, patterns and workflows which we adopt, in order to provide a central source of truth regarding our "current thinking", which can then be applied to individual Lisk projects as and when appropriate.
-1. To serve as a base for new projects.
+## Installation
+
+```
+npm install --save-dev --production mocha-bdd
+```
 
 ## Usage
 
-When starting a new Lisk project, use this repository as a base. With a few small customisations, you will have a skeleton project up and running in a few minutes. The easiest way to bootstrap a new project is using the `bin/bootstrap.sh` script:
+### Importing the functions
 
-```sh
-curl --silent --user my_github_username https://raw.githubusercontent.com/LiskHQ/mocha-bdd/30-start_script/bin/bootstrap.sh | bash -l -s my-fresh-lisk-project
+**Recommended:** Call the default export to add `Given`, `When`, and `Then` functions to the global object.
+
+```js
+import mochaBDD from 'mocha-bdd';
+
+mochaBDD();
 ```
 
-Notes:
+This should be done in your test setup file and run before any tests. For example, by running Mocha with the `--require` option set to that file.
 
-- `my_github_username` should be replaced with your GitHub username. You will be prompted for your GitHub password.
-- The `-l` option tells bash to act as if it had been invoked as a login shell. If you use [nvm][nvm] as your Node.js version manager, then it will be used to set the correct version of Node.js when installing NPM dependencies.
-- `my-fresh-lisk-project` should be replaced with the name you’ve chosen for your new project.
+Alternatively, import the individual functions in each relevant module:
 
-If you would rather complete this process on your own, you should follow these steps:
+```js
+import { Given, When, Then } from 'mocha-bdd';
+```
 
-1. Clone the repository
-1. Reinitialise git (by removing the `.git` directory, running `git init` and committing everything into the initial commit)
-1. Find and replace all instances of `mocha-bdd` with your project name (assuming the name of your project is the same as its GitHub namespace)
-1. Commit these customisation changes
-1. Run `npm install`
+### Writing specifications
 
-More precise steps can be viewed in the `bin/bootstrap.sh` script.
+Specifications consist of a series of steps, which fall into one of three categories:
+1. **Given** steps are for setup.
+1. **When** steps are for executing the code under test.
+1. **Then** steps are for making assertions based on the result.
 
-## package.json
+The provided `Given` and `When` functions take a description, a step definition function, and a suite body function. The `Then` function takes only a description and a step definition function.
 
-You will need to update the project description. Other fields will be given a sensible value but may need to be updated depending on the project.
+#### Descriptions
 
-### devDependencies
+A description should succinctly describe the step, and should cover an atomic aspect of your test/suite. Ideally they should contain any example values that will be tested against. `mocha-bdd` will prepend `Given`, `When`, or `Then` to the beginning of your description so that the output will read the same as your specifications.
 
-Installed for your convenience are the following:
+#### Step definition functions
 
-1. [Babel][babel] plus various plugins, presets and tools so you can write modern JavaScript without worrying about compatibility.
-1. [Prettier][prettier] for standard code formatting.
-1. [Eslint][eslint] plus various configs and plugins, to enforce additional rules beyond Prettier’s remit.
-1. [Husky][husky] and [lint-staged][lint-staged] to help with running checks/builds before/after various git/NPM commands.
-1. [Mocha][mocha], [Chai][chai] and [Sinon][sinon] plus plugins for tests.
-1. [nyc][nyc] and [Coveralls][coveralls] for coverage.
+These should be named in line with the descriptions. They should be created using a function declaration, so that Mocha can call it with the correct context and variables can be passed successfully among test steps.
 
-These can be removed as appropriate, along with the corresponding NPM scripts.
+Step definition functions can extract values from the description by matching regular expressions against `this.test.parent.title` (in the case of `Given` or `When` steps) or `this.test.title` (in the case of `Then` steps). They can store values in the test context either on `this` directly, or `this.test.ctx` (which you may find to be a helpful alias). Values which are assumed already to have been stored in the test context by previous test steps can be accessed as well.
 
-### Scripts
+Step definitions should aim to perform *only what is contained in the corresponding description*. If you find yourself putting additional functionality in a step definition function, consider whether you require an additional test step.
 
-- `start` will run your source code using `babel-node`, which is not performant but does not require transpilation.
-- `format` will format your source and test code using Prettier.
-- `lint` will lint everything relevant with Eslint.
-- `test` will run your tests and instrument your code using nyc. (With the initial setup this results in a failing test: the first step in TDD’s red-green-refactor process!)
-- `test:watch` will watch for changes and reruns your tests.
-- `test:watch:min` will do the same but using the `min` reporter (useful if you just want to check if your changes break a test).
-- `cover` will output a coverage report (differs based on the environment).
-- `build` will transpile your source code using Babel.
-- `precommit` will format staged files and lint everything before you commit.
-- `prepush` will lint and test before you push.
-- `prepublishOnly` will run the `prepush` checks and the `build` command. **Note: this is run automatically before publishing in NPM v5+ but must be performed manually in NPM 3 (the currently supported NPM version).**
+#### Suite body functions
 
-## Documentation for contributors
+These can safely be written as arrow functions. Their job is simply to contain the test steps which should be nested inside the current step.
 
-Several files are especially relevant for contributors:
-- `CODE_OF_CONDUCT.md` which should probably be left as it is.
-- `CONTRIBUTING.md` which will benefit from project-specific customisation.
-- `ISSUE_TEMPLATE.md` which may need to be adapted to your project.
-- `LICENSE` which should be left alone unless your project is being released under a different licence. In this case the `license` field of the `package.json` file should be updated as well.
+### Example specification
 
-## Project structure
+```js
+import given from "./given";
+import when from "./when";
+import then from "./then";
 
-- Source code should go in `src`, test code should go in `test`.
-- nyc output goes into `.nyc_output`, and built files are put into a `dist` directory which is created when needed.
-- Files you do not want to commit can be placed in `.idea` or `tmp` (you will need to create these directories yourself).
+describe('wishHappyBirthday', () => {
+	Given('a language "English"', given.aLanguage, () => {
+		Given('a name "Lisky"', given.aName, () => {
+			When('wishHappyBirthday is called with the name and the language', when.wishHappyBirthdayIsCalledWithTheNameAndTheLanguage, () => {
+				Then('it should return "Happy birthday, Lisky!"', then.itShouldReturn);
+			});
+		});
+		Given('a name "Satoshi"', given.aName, () => {
+			When('wishHappyBirthday is called with the name and the language', when.wishHappyBirthdayIsCalledWithTheNameAndTheLanguage, () => {
+				Then('it should return "Happy birthday, Satoshi!"', then.itShouldReturn);
+			});
+		});
+	});
+	Given('a language "Deutsch"', given.aLanguage, () => {
+		Given('a name "Lisky"', given.aName, () => {
+			When('wishHappyBirthday is called with the name and the language', when.wishHappyBirthdayIsCalledWithTheNameAndTheLanguage, () => {
+				Then('it should return "Herzlichen Glückwunsch zum Geburtstag, Lisky!"', then.itShouldReturn);
+			});
+		});
+		Given('a name "Satoshi"', given.aName, () => {
+			When('wishHappyBirthday is called with the name and the language', when.wishHappyBirthdayIsCalledWithTheNameAndTheLanguage, () => {
+				Then('it should return "Herzlichen Glückwunsch zum Geburtstag, Satoshi!"', then.itShouldReturn);
+			});
+		});
+	});
+	Given('an unsupported language "Esperanto"', given.anUnknownLanguage, () => {
+		When('wishHappyBirthday is called with the name and the language', when.wishHappyBirthdayIsCalledWithTheNameAndTheLanguage, () => {
+			Then('it should throw an error "Unsupported language"', then.itShouldThrowAnError);
+		});
+	});
+});
+```
 
-### Testing structure
+### Running subsets of specifications
 
-The test directory has some configuration and setup files, and is otherwise divided into a `specs` directory and a `steps` directory. The intention is for specifications to contain implementation-neutral Mocha suites, and the (reusable) steps to be implemented in the `steps` directory. See [this blogpost][gwt-blogpost] for an introduction.
+Just like Mocha’s functions, `Given`, `When` and `Then` all expose `.only` and `.skip` methods which result in the corresponding subset of tests being run. For example:
 
-If this approach does not suit your project the structure can be replaced as necessary. However, the configuration and setup should probably be preserved. Helpful things in place include:
+```js
+Given('some setup', ..., () => {
+	When.skip('something happens that should be skipped', ..., () => {
+		Then('a test will be skipped', ...);
+		Then.only('an exclusive test will be skipped', ...);
+	});
+	When('something happens that should not be skipped', ..., () => {
+		Then.only('an exclusive test will run', ...);
+		Then('a test will not run', ...);
+		Then.only('another exclusive test will run', ...);
+	});
+});
+```
 
-- Combining Babel, nyc and Mocha.
-- Adding Chai’s `expect` as a global, and initialising plugins.
-- Adding `sinon` and a sinon `sandbox` as globals, and resetting the sandbox after each test in a global hook (it is recommended to use the sandbox wherever possible to avoid manual resets).
+## Authors
 
-## Continuous integration
-
-This project assumes a standard CI setup on Jenkins. There are three Jenkinsfiles:
-
-- `Jenkinsfile` for branches/PRs which lints, tests, reports coverage to Coveralls, and notifies GitHub.
-- `Jenkinsfile.private` which checks branches/PRs for known vulnerabilities in the installed dependencies using [Snyk][snyk] if `package.json` has changed. The results should not be publicly viewable in Jenkins.
-- `Jenkinsfile.nightly` which checks the `master` branch for vulnerabilities nightly. The results should also not be publicly viewable in Jenkins.
-
-The `.snyk` file configures Snyk.
-
-## Miscellaneous information
-
-- `.editorconfig` can be used in combination with plugins for a wide range of editors/IDEs to ensure consistency of certain key syntax details.
-- `.npmignore` ensures that as little as possible is included when published to NPM. This may require adjustment.
-- If the project is for a client, or otherwise will not be used as a library in other projects, consider replacing `babel-plugin-transform-runtime` and `babel-runtime` with `babel-polyfill` (see the [details section of the Babel Polyfill documentation](babel-polyfill-details)).
-
-[babel]: https://babeljs.io/
-[babel-polyfill-details]: http://babeljs.io/docs/usage/polyfill#details
-[chai]: http://chaijs.com/
-[coveralls]: https://coveralls.io/
-[eslint]: https://eslint.org/
-[gwt-blogpost]: https://blog.lisk.io/bdd-style-unit-testing-with-mocha-704137e429d5
-[husky]: https://github.com/typicode/husky
-[lint-staged]: https://github.com/okonet/lint-staged
-[mocha]: http://mochajs.org/
-[nvm]: https://github.com/creationix/nvm
-[nyc]: https://istanbul.js.org/
-[prettier]: https://prettier.io/
-[sinon]: http://sinonjs.org/
-[snyk]: https://snyk.io/
+- William Clark [will@lightcurve.io](mailto:will@lightcurve.io)
