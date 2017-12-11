@@ -9,9 +9,19 @@ This package helps you write better BDD-style tests. It exports three functions 
 
 ## Installation
 
+mocha-bdd can be installed via NPM. Since it is a library to help with testing, it should usually be installed as a development dependency, as shown:
+
 ```
 npm install --save-dev --production mocha-bdd
 ```
+
+mocha-bdd is designed to work with [Mocha][mocha]. In particular, it assumes that Mocha’s `describe` and `it` functions are accessible globally (e.g. if your tests are being run using Mocha’s command-line tool). Therefore, Mocha is listed as a peer dependency of mocha-bdd. Mocha can be installed with the following command:
+
+```
+npm install --save-dev --production mocha
+```
+
+The peer dependency listed is Mocha version `^4.0.1`, which is the latest release at the time of writing, and the release which mocha-bdd has been tested against. However, mocha-bdd should work fine with earlier versions of Mocha so long as the `describe` and `it` functions (along with their `.skip` and `.only` methods) are exposed globally.
 
 ## Usage
 
@@ -129,3 +139,6 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the [GNU General Public License](https://github.com/LiskHQ/mocha-bdd/tree/master/LICENSE) along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+[mocha]: http://mochajs.org/
