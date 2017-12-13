@@ -1,6 +1,6 @@
 {
 	"name": "mocha-bdd",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Helper functions for practising BDD with Mocha",
 	"author": "Lisk Foundation <admin@lisk.io>, lightcurve GmbH <admin@lightcurve.io>",
 	"license": "GPL-3.0",
